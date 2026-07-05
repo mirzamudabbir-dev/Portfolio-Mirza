@@ -295,9 +295,8 @@ body {
 }
 
 @media (max-width: 900px) {
-  .cards-container {
+  .cards-container, .experience-container, .student-container, .skills-container {
     width: 90%;
-    right: 5%;
   }
 }
 
