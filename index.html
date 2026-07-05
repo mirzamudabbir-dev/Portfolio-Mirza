@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mirza Mudabbir - Portfolio</title>
+  <meta name="description" content="Mirza Mudabbir's Portfolio">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,700;0,900;1,400;1,700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="index.css">
+  
+  <!-- Three.js and GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="dark-theme">
+  <!-- Interactive Cosmic Canvas (z-index 0) -->
+  <canvas id="stars-canvas"></canvas>
+  
+  <!-- Global 3D Planet Layer (z-index 20) -->
+  <canvas id="planet-canvas"></canvas>
+
+  <main id="main-content">
+    
+    <!-- Hero Section (3D Earth Sticky Sequence) -->
+    <section id="hero" class="scroll-section">
+      <div class="sticky-container">
+        <!-- UI Overlay Layer for Hero -->
+        <div class="ui-layer">
+          <div class="hero-wrapper">
+            <p class="mono-text sub-label hero-sub">#COME, WHAT MAY</p>
+            <h1 class="hero-title hero-main">MIRZA<br/>MUDABBIR</h1>
+            <p class="hero-mission hero-desc">
+              I'm drawn to clarity over noise. To details that most people overlook. This is a space shaped by that mindset — simple, but never careless.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Section (3D Mercury Sequence) -->
+    <section id="student" class="scroll-section">
+      <div class="sticky-container">
+        <div class="ui-layer">
+          <div class="student-container">
+            <h2 class="massive-text student-title">STUDENT, <span class="silver-text">LEARNING.</span><br/>FOUNDER, <span class="silver-text">BUILDING.</span></h2>
+            <p class="student-desc silver-text">
+              I focus on analytical thinking, structured problem-solving, and systems understanding, combining technical depth with business insight to build practical, real-world solutions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section (3D Venus Sequence) -->
+    <section id="skills" class="scroll-section">
+      <div class="sticky-container">
+        <div class="ui-layer">
+          <div class="skills-container">
+            
+            <div class="skills-item">
+              <p class="mono-text silver-text small-text">01 &nbsp; COMPUTER SCIENCE & ENGINEERING</p>
+              <h3 class="skill-title">SOFTWARE SYSTEMS</h3>
+              <p class="skill-desc silver-text">Artificial Intelligence, Backend Development, System Design, Machine Learning, APIs, Databases, Intelligent & Scalable Software Systems.</p>
+              <p class="mono-text silver-text small-text">SREE CHAITANYA COLLEGE OF ENGINEERING</p>
+            </div>
+
+            <div class="skills-item">
+              <p class="mono-text silver-text small-text">02 &nbsp; BUSINESS ADMINISTRATION</p>
+              <h3 class="skill-title">BUSINESS & FINANCE</h3>
+              <p class="skill-desc silver-text">Market Analysis, Financial Analysis, Operations & Tech Entrepreneurship.</p>
+              <p class="mono-text silver-text small-text">MANIPAL ACADEMY OF HIGHER EDUCATION</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section (3D Uranus Sticky Sequence) -->
+    <section id="experience" class="scroll-section">
+      <div class="sticky-container">
+        <div class="ui-layer">
+          <div class="experience-container">
+            <h2 class="experience-title">EXPERIENCE</h2>
+            
+            <!-- Experience 1 -->
+            <div class="experience-item">
+              <div class="exp-details">
+                <p class="mono-text silver-text small-text">2024 - PRESENT</p>
+                <h3 class="exp-title">[Job Title Placeholder]</h3>
+                <p class="exp-company mono-text silver-text">[Company Name Placeholder]</p>
+                <p class="exp-desc silver-text">A brief description of the work experience. Replace this with the actual details.</p>
+              </div>
+            </div>
+
+            <!-- Experience 2 -->
+            <div class="experience-item">
+              <div class="exp-details">
+                <p class="mono-text silver-text small-text">2022 - 2024</p>
+                <h3 class="exp-title">[Previous Role Placeholder]</h3>
+                <p class="exp-company mono-text silver-text">[Company Name Placeholder]</p>
+                <p class="exp-desc silver-text">A brief description of the work experience. Replace this with the actual details.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Section (3D Neptune Sticky Sequence) -->
+    <section id="work" class="scroll-section">
+      <div class="sticky-container">
+        
+        <!-- UI Overlay Layer for Projects -->
+        <div class="ui-layer">
+          <div class="cards-container">
+            <h2 class="work-title">PROOF OF WORK</h2>
+            
+            <!-- Project 1 -->
+            <a href="https://847ca716.multi-agent-analyst.pages.dev" target="_self" class="project-star-wrapper">
+              <div class="star-orb"></div>
+              <div class="star-details">
+                <p class="mono-text silver-text small-text">01</p>
+                <h3 class="project-title">AI Data Analysis</h3>
+                <p class="project-cat mono-text silver-text">Agentic AI & Analytics WebApp</p>
+              </div>
+            </a>
+
+            <!-- Project 2 -->
+            <a href="https://taxmate-jhq.pages.dev" target="_blank" class="project-star-wrapper">
+              <div class="star-orb"></div>
+              <div class="star-details">
+                <p class="mono-text silver-text small-text">02</p>
+                <h3 class="project-title">TaxMate</h3>
+                <p class="project-cat mono-text silver-text">Financial Analytics & Computations WebApp</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="content-wrapper contact-wrapper">
+        <h2 class="massive-text fade-in">LET'S CONNECT</h2>
+        <div class="contact-links">
+          <a href="https://x.com/mirzadocx?s=21" target="_blank" class="contact-link fade-in">Twitter / X</a>
+          <a href="https://github.com/mirzamudabbir-dev" target="_blank" class="contact-link fade-in">GitHub</a>
+          <a href="https://www.linkedin.com/in/mirza-mudabbir-ali-baig-b51930324" target="_blank" class="contact-link fade-in">LinkedIn</a>
+          <a href="https://www.instagram.com/mirza.docx" target="_blank" class="contact-link fade-in">Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer fade-in">
+      <div class="content-wrapper">
+        <p class="mono-text silver-text">© 2026 M. ALL RIGHTS RESERVED. DESIGNED WITH PRECISION.</p>
+      </div>
+    </footer>
+
+    <!-- Base64 Textures (bypasses local CORS) -->
+    <script src="assets/textures.js"></script>
+    
+    <!-- Main Script -->
+    <script src="main.js"></script>
+  </main>
+</body>
+</html>
