@@ -332,7 +332,7 @@ function init3DPlanetsScroll() {
        .to('.experience-item', {
          opacity: 1,
          scale: 1,
-         stagger: 0.2,
+         stagger: 1.5,
          duration: 0.8,
          ease: "power2.out"
        }, "<0.2");
