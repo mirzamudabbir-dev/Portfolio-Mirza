@@ -247,6 +247,7 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
   text-align: center;
+  padding: 40px 24px;
 }
 
 .skills-container, .experience-container {
@@ -254,7 +255,7 @@ body {
   text-align: left;
 }
 
-.experience-container {
+.experience-container, .cards-container {
   gap: 24px;
 }
 
