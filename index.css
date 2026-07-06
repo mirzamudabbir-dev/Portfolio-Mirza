@@ -245,10 +245,7 @@ body {
   text-align: center;
 }
 
-.skills-container, .experience-container {
-  align-items: flex-start;
-  text-align: left;
-}
+
 
 .experience-title, .work-title, .skills-title {
   margin-bottom: 24px;
@@ -259,7 +256,8 @@ body {
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  text-align: left;
+  text-align: center;
+  align-items: center;
   word-wrap: break-word;
 }
 
