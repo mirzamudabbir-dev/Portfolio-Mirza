@@ -368,7 +368,8 @@ function init3DPlanetsScroll() {
            .to(mercuryGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
            .to(mercuryGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
            .to('.student-title', { opacity: 1, y: 0, duration: 1 })
-           .to('.student-desc', { opacity: 1, scale: 1, duration: 1 }, "<")
+           .to('.student-desc', { opacity: 1, scale: 1, duration: 1 })
+           .to({}, { duration: 1 }) // Wait to read
            .to(['.student-title', '.student-desc'], { opacity: 0, y: -50, duration: 1 })
            .to({}, { duration: 1 });
 
@@ -401,6 +402,8 @@ function init3DPlanetsScroll() {
   for (let i = 1; i < skillItems.length; i++) {
     skillsTl.to(skillItems[i], { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 });
   }
+
+  skillsTl.to({}, { duration: 1 }); // Wait to read
 
   skillsTl.to('.skills-title', { opacity: 0, y: -50, duration: 1 })
           .to(skillItems, { opacity: 0, scale: 0, height: 0, marginBottom: 0, duration: 1 }, "<")
@@ -436,6 +439,8 @@ function init3DPlanetsScroll() {
     techSkillsTl.to(techItems[i], { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 });
   }
 
+  techSkillsTl.to({}, { duration: 1 }); // Wait to read
+
   techSkillsTl.to('.tech-title', { opacity: 0, y: -50, duration: 1 })
               .to(techItems, { opacity: 0, scale: 0, height: 0, marginBottom: 0, duration: 1 }, "<")
               .to({}, { duration: 1 });
@@ -470,6 +475,8 @@ function init3DPlanetsScroll() {
     expTl.to(expItems[i], { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 });
   }
 
+  expTl.to({}, { duration: 1 }); // Wait to read
+
   expTl.to('.experience-title', { opacity: 0, y: -50, duration: 1 })
        .to(expItems, { opacity: 0, scale: 0, height: 0, marginBottom: 0, duration: 1 }, "<")
        .to({}, { duration: 1 });
@@ -503,6 +510,8 @@ function init3DPlanetsScroll() {
   for (let i = 1; i < workItems.length; i++) {
     workTl.to(workItems[i], { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 });
   }
+
+  workTl.to({}, { duration: 1 }); // Wait to read
 
   workTl.to('.work-title', { opacity: 0, y: -50, duration: 1 })
         .to(workItems, { opacity: 0, scale: 0, height: 0, marginBottom: 0, duration: 1 }, "<")
