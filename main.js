@@ -308,7 +308,8 @@ function init3DPlanetsScroll() {
             stagger: 1.5,
             duration: 0.8,
             ease: "power2.out"
-          }, "<0.2");
+          }, "<0.2")
+          .to({}, { duration: 2 });
 
   // ----------------------------------------------------
   // EXPERIENCE TIMELINE (JUPITER)
@@ -347,7 +348,8 @@ function init3DPlanetsScroll() {
          stagger: 1.5,
          duration: 0.8,
          ease: "power2.out"
-       }, "<0.2");
+       }, "<0.2")
+       .to({}, { duration: 2 });
 
   // ----------------------------------------------------
   // WORK TIMELINE (NEPTUNE)
@@ -386,5 +388,6 @@ function init3DPlanetsScroll() {
           stagger: 1.5,
           duration: 0.8,
           ease: "power2.out"
-        }, "<0.2");
+        }, "<0.2")
+        .to({}, { duration: 2 });
 }
