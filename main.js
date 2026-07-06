@@ -298,7 +298,8 @@ function init3DPlanetsScroll() {
            .to(mercuryGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
            .to(mercuryGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
            .to('.student-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
-           .to('.student-desc', { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }, "<0.2");
+           .to('.student-desc', { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }, "<0.2")
+           .to({}, { duration: 2 });
 
   // ----------------------------------------------------
   // SKILLS TIMELINE (VENUS)
