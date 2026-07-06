@@ -284,7 +284,7 @@ function init3DPlanetsScroll() {
   // ----------------------------------------------------
   gsap.set(venusGroup.position, { x: -5, y: -5 }); 
   gsap.set('.skills-title', { opacity: 0, y: -50 });
-  gsap.set('.skills-item', { opacity: 0, scale: 0 });
+  gsap.set('.skills-item', { opacity: 0, scale: 0, height: 0, marginBottom: 0, overflow: 'hidden' });
 
   const skillsTl = gsap.timeline({
     scrollTrigger: {
@@ -300,7 +300,15 @@ function init3DPlanetsScroll() {
           .to(venusGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
           .to(venusGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
           .to('.skills-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
-          .to('.skills-item', { opacity: 1, scale: 1, stagger: 0.2, duration: 0.8, ease: "power2.out" }, "<0.2");
+          .to('.skills-item', {
+            opacity: 1,
+            scale: 1,
+            height: 'auto',
+            marginBottom: (i, el) => el.nextElementSibling ? 24 : 0,
+            stagger: 1.5,
+            duration: 0.8,
+            ease: "power2.out"
+          }, "<0.2");
 
   // ----------------------------------------------------
   // EXPERIENCE TIMELINE (JUPITER)
