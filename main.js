@@ -351,9 +351,10 @@ function init3DPlanetsScroll() {
   });
 
   studentTl.to(mercuryGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
+           .to({}, { duration: 1 }) // Planet stays
            .to(mercuryGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
            .to(mercuryGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-           .to('.student-title', { opacity: 1, y: 0, duration: 1 }, "<")
+           .to('.student-title', { opacity: 1, y: 0, duration: 1 })
            .to('.student-desc', { opacity: 1, scale: 1, duration: 1 }, "<")
            .to(['.student-title', '.student-desc'], { opacity: 0, y: -50, duration: 1 })
            .to({}, { duration: 1 });
@@ -374,13 +375,14 @@ function init3DPlanetsScroll() {
     }
   });
 
-  skillsTl.to(venusGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 });
+  skillsTl.to(venusGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
+          .to({}, { duration: 1 }); // Planet stays
           
   const skillItems = gsap.utils.toArray('.skills-item');
   
   skillsTl.to(venusGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
           .to(venusGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-          .to('.skills-title', { opacity: 1, y: 0, duration: 1 }, "<")
+          .to('.skills-title', { opacity: 1, y: 0, duration: 1 })
           .to(skillItems[0], { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 }, "<");
 
   for (let i = 1; i < skillItems.length; i++) {
@@ -407,13 +409,14 @@ function init3DPlanetsScroll() {
     }
   });
 
-  techSkillsTl.to(marsGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 });
+  techSkillsTl.to(marsGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
+              .to({}, { duration: 1 }); // Planet stays
           
   const techItems = gsap.utils.toArray('.tech-item');
   
   techSkillsTl.to(marsGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
               .to(marsGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-              .to('.tech-title', { opacity: 1, y: 0, duration: 1 }, "<")
+              .to('.tech-title', { opacity: 1, y: 0, duration: 1 })
               .to(techItems[0], { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 }, "<");
 
   for (let i = 1; i < techItems.length; i++) {
@@ -440,13 +443,14 @@ function init3DPlanetsScroll() {
     }
   });
 
-  expTl.to(jupiterGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 });
+  expTl.to(jupiterGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
+       .to({}, { duration: 1 }); // Planet stays
 
   const expItems = gsap.utils.toArray('.experience-item');
   
   expTl.to(jupiterGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
        .to(jupiterGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-       .to('.experience-title', { opacity: 1, y: 0, duration: 1 }, "<")
+       .to('.experience-title', { opacity: 1, y: 0, duration: 1 })
        .to(expItems[0], { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 }, "<");
 
   for (let i = 1; i < expItems.length; i++) {
@@ -473,13 +477,14 @@ function init3DPlanetsScroll() {
     }
   });
 
-  workTl.to(neptuneGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 });
+  workTl.to(neptuneGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
+        .to({}, { duration: 1 }); // Planet stays
 
   const workItems = gsap.utils.toArray('.project-item');
   
   workTl.to(neptuneGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
         .to(neptuneGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-        .to('.work-title', { opacity: 1, y: 0, duration: 1 }, "<")
+        .to('.work-title', { opacity: 1, y: 0, duration: 1 })
         .to(workItems[0], { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 }, "<");
 
   for (let i = 1; i < workItems.length; i++) {
@@ -506,13 +511,14 @@ function init3DPlanetsScroll() {
     }
   });
 
-  contactTl.to(uranusGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 });
+  contactTl.to(uranusGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
+           .to({}, { duration: 1 }); // Planet stays
 
   const contactLinks = gsap.utils.toArray('.contact-link');
   
   contactTl.to(uranusGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
            .to(uranusGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-           .to('.contact-title', { opacity: 1, y: 0, duration: 1 }, "<")
+           .to('.contact-title', { opacity: 1, y: 0, duration: 1 })
            .to(contactLinks[0], { opacity: 1, y: 0, duration: 1 }, "<");
 
   for (let i = 1; i < contactLinks.length; i++) {
