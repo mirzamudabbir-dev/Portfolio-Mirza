@@ -218,14 +218,21 @@ function init3DPlanetsScroll() {
   marsGroup.scale.set(0.8, 0.8, 0.8);
   scene.add(marsGroup);
 
-  // 7. Moon Mesh (Contact Section)
-  const moonGroup = new THREE.Group();
-  const moonTexture = textureLoader.load(typeof moonBase64 !== 'undefined' ? moonBase64 : 'assets/moon.jpg');
-  const moonMat = new THREE.MeshStandardMaterial({ map: moonTexture, roughness: 1.0, metalness: 0.0 });
-  const moon = new THREE.Mesh(geometry, moonMat);
-  moonGroup.add(moon);
-  moonGroup.scale.set(0.8, 0.8, 0.8);
-  scene.add(moonGroup);
+  // 7. Uranus Mesh (Contact Section)
+  const uranusGroup = new THREE.Group();
+  const uranusTexture = textureLoader.load(typeof uranusBase64 !== 'undefined' ? uranusBase64 : 'assets/uranus.jpg');
+  const uranusMat = new THREE.MeshStandardMaterial({ map: uranusTexture, roughness: 0.6, metalness: 0.1 });
+  const uranus = new THREE.Mesh(geometry, uranusMat);
+  uranusGroup.add(uranus);
+  
+  // Uranus Atmosphere (Subtle pale blue/cyan glow)
+  const uranusColor = 0xaaddff;
+  const uranusAtmos1 = new THREE.Mesh(new THREE.SphereGeometry(1.52, 64, 64), new THREE.MeshBasicMaterial({ color: uranusColor, transparent: true, opacity: 0.15, blending: THREE.AdditiveBlending }));
+  const uranusAtmos2 = new THREE.Mesh(new THREE.SphereGeometry(1.55, 64, 64), new THREE.MeshBasicMaterial({ color: uranusColor, transparent: true, opacity: 0.08, blending: THREE.AdditiveBlending }));
+  uranusGroup.add(uranusAtmos1, uranusAtmos2);
+
+  uranusGroup.scale.set(0.8, 0.8, 0.8);
+  scene.add(uranusGroup);
 
   // Lighting
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.4); // Brighter ambient
@@ -253,7 +260,7 @@ function init3DPlanetsScroll() {
     mercuryGroup.rotation.y += 0.002;
     venusGroup.rotation.y += 0.002;
     marsGroup.rotation.y += 0.002;
-    moonGroup.rotation.y += 0.002;
+    uranusGroup.rotation.y += 0.002;
     renderer.render(scene, camera);
   }
   animatePlanets();
@@ -446,9 +453,9 @@ function init3DPlanetsScroll() {
         .to({}, { duration: 2 });
 
   // ----------------------------------------------------
-  // CONTACT TIMELINE (MOON)
+  // CONTACT TIMELINE (URANUS)
   // ----------------------------------------------------
-  gsap.set(moonGroup.position, { x: -5, y: -5 }); 
+  gsap.set(uranusGroup.position, { x: -5, y: -5 }); 
   gsap.set('.contact-title', { opacity: 0, y: -50 });
   gsap.set('.contact-link', { opacity: 0, y: 50 });
 
@@ -461,10 +468,10 @@ function init3DPlanetsScroll() {
     }
   });
 
-  contactTl.to(moonGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
+  contactTl.to(uranusGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
           .to({}, {duration: 0.5})
-          .to(moonGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
-          .to(moonGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
+          .to(uranusGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
+          .to(uranusGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
           .to('.contact-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
           .to('.contact-link', {
             opacity: 1,
