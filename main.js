@@ -210,7 +210,8 @@ function init3DPlanetsScroll() {
 
   // 6. Mars Mesh and Atmosphere Group (Tech Skills Section)
   const marsGroup = new THREE.Group();
-  const marsMat = new THREE.MeshStandardMaterial({ color: 0xcc4422, roughness: 0.9, metalness: 0.2 });
+  const marsTexture = textureLoader.load(typeof marsBase64 !== 'undefined' ? marsBase64 : 'assets/mars.jpg');
+  const marsMat = new THREE.MeshStandardMaterial({ map: marsTexture, roughness: 0.9, metalness: 0.2 });
   const mars = new THREE.Mesh(geometry, marsMat);
   marsGroup.add(mars);
 
