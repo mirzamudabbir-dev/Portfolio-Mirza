@@ -351,11 +351,11 @@ function init3DPlanetsScroll() {
   });
 
   studentTl.to(mercuryGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
-           .to('.student-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.5")
+           .to('.student-title', { opacity: 1, y: 0, duration: 1 })
            .to('.student-desc', { opacity: 1, scale: 1, duration: 1 })
+           .to(['.student-title', '.student-desc'], { opacity: 0, y: -50, duration: 1 })
            .to(mercuryGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
            .to(mercuryGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-           .to(['.student-title', '.student-desc'], { opacity: 0, y: -50, duration: 1 }, "<")
            .to({}, { duration: 1 });
 
   // ----------------------------------------------------
@@ -375,17 +375,17 @@ function init3DPlanetsScroll() {
   });
 
   skillsTl.to(venusGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
-          .to('.skills-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.5");
+          .to('.skills-title', { opacity: 1, y: 0, duration: 1 });
           
   const skillItems = gsap.utils.toArray('.skills-item');
   skillItems.forEach((item) => {
     skillsTl.to(item, { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 });
   });
 
-  skillsTl.to(venusGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
-          .to(venusGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-          .to('.skills-title', { opacity: 0, y: -50, duration: 1 }, "<")
+  skillsTl.to('.skills-title', { opacity: 0, y: -50, duration: 1 })
           .to(skillItems, { opacity: 0, scale: 0, height: 0, marginBottom: 0, duration: 1 }, "<")
+          .to(venusGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
+          .to(venusGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
           .to({}, { duration: 1 });
 
   // ----------------------------------------------------
@@ -405,17 +405,17 @@ function init3DPlanetsScroll() {
   });
 
   techSkillsTl.to(marsGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
-              .to('.tech-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.5");
+              .to('.tech-title', { opacity: 1, y: 0, duration: 1 });
           
   const techItems = gsap.utils.toArray('.tech-item');
   techItems.forEach((item) => {
     techSkillsTl.to(item, { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 });
   });
 
-  techSkillsTl.to(marsGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
-              .to(marsGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-              .to('.tech-title', { opacity: 0, y: -50, duration: 1 }, "<")
+  techSkillsTl.to('.tech-title', { opacity: 0, y: -50, duration: 1 })
               .to(techItems, { opacity: 0, scale: 0, height: 0, marginBottom: 0, duration: 1 }, "<")
+              .to(marsGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
+              .to(marsGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
               .to({}, { duration: 1 });
 
   // ----------------------------------------------------
@@ -435,17 +435,17 @@ function init3DPlanetsScroll() {
   });
 
   expTl.to(jupiterGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
-       .to('.experience-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.5");
+       .to('.experience-title', { opacity: 1, y: 0, duration: 1 });
 
   const expItems = gsap.utils.toArray('.experience-item');
   expItems.forEach((item) => {
     expTl.to(item, { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 });
   });
 
-  expTl.to(jupiterGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
-       .to(jupiterGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-       .to('.experience-title', { opacity: 0, y: -50, duration: 1 }, "<")
+  expTl.to('.experience-title', { opacity: 0, y: -50, duration: 1 })
        .to(expItems, { opacity: 0, scale: 0, height: 0, marginBottom: 0, duration: 1 }, "<")
+       .to(jupiterGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
+       .to(jupiterGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
        .to({}, { duration: 1 });
 
   // ----------------------------------------------------
@@ -465,17 +465,17 @@ function init3DPlanetsScroll() {
   });
 
   workTl.to(neptuneGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
-        .to('.work-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.5");
+        .to('.work-title', { opacity: 1, y: 0, duration: 1 });
 
   const workItems = gsap.utils.toArray('.project-item');
   workItems.forEach((item) => {
     workTl.to(item, { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 });
   });
 
-  workTl.to(neptuneGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
-        .to(neptuneGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-        .to('.work-title', { opacity: 0, y: -50, duration: 1 }, "<")
+  workTl.to('.work-title', { opacity: 0, y: -50, duration: 1 })
         .to(workItems, { opacity: 0, scale: 0, height: 0, marginBottom: 0, duration: 1 }, "<")
+        .to(neptuneGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
+        .to(neptuneGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
         .to({}, { duration: 1 });
 
   // ----------------------------------------------------
@@ -495,7 +495,7 @@ function init3DPlanetsScroll() {
   });
 
   contactTl.to(uranusGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
-           .to('.contact-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.5");
+           .to('.contact-title', { opacity: 1, y: 0, duration: 1 });
 
   const contactLinks = gsap.utils.toArray('.contact-link');
   contactTl.to(contactLinks, { opacity: 1, y: 0, stagger: 0.25, duration: 1, ease: "power2.out" })
