@@ -191,7 +191,7 @@ function init3DPlanetsScroll() {
 
   // 2. Jupiter Mesh (Work Experience)
   const jupiterGroup = new THREE.Group();
-  const jupiterTexture = textureLoader.load(typeof jupiterBase64 !== 'undefined' ? jupiterBase64 : 'assets/jupiter.jpg');
+  const jupiterTexture = textureLoader.load('assets/jupiter.jpg');
   // Roughness 1 ensures it looks like clouds, not a plastic ball
   const jupiterMat = new THREE.MeshStandardMaterial({ map: jupiterTexture, roughness: 1, metalness: 0 });
   const jupiter = new THREE.Mesh(geometry, jupiterMat);
@@ -210,7 +210,7 @@ function init3DPlanetsScroll() {
   // 3. Neptune Mesh and Atmosphere Group
   const neptuneGroup = new THREE.Group();
 
-  const neptuneTexture = textureLoader.load(typeof neptuneBase64 !== 'undefined' ? neptuneBase64 : 'assets/neptune.jpg');
+  const neptuneTexture = textureLoader.load('assets/neptune.jpg');
   const neptuneMat = new THREE.MeshStandardMaterial({ map: neptuneTexture, roughness: 1, metalness: 0 });
   const neptune = new THREE.Mesh(geometry, neptuneMat);
   neptuneGroup.add(neptune);
@@ -351,12 +351,12 @@ function init3DPlanetsScroll() {
   });
 
   studentTl.to(mercuryGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
-           .to({}, {duration: 0.5})
+           .to('.student-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.5")
+           .to('.student-desc', { opacity: 1, scale: 1, duration: 1 })
            .to(mercuryGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
            .to(mercuryGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-           .to('.student-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
-           .to('.student-desc', { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }, "<0.2")
-           .to({}, { duration: 2 });
+           .to(['.student-title', '.student-desc'], { opacity: 0, y: -50, duration: 1 }, "<")
+           .to({}, { duration: 1 });
 
   // ----------------------------------------------------
   // SKILLS TIMELINE (VENUS)
@@ -375,20 +375,18 @@ function init3DPlanetsScroll() {
   });
 
   skillsTl.to(venusGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
-          .to({}, {duration: 0.5})
-          .to(venusGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
+          .to('.skills-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.5");
+          
+  const skillItems = gsap.utils.toArray('.skills-item');
+  skillItems.forEach((item) => {
+    skillsTl.to(item, { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 });
+  });
+
+  skillsTl.to(venusGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
           .to(venusGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-          .to('.skills-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
-          .to('.skills-item', {
-            opacity: 1,
-            scale: 1,
-            height: 'auto',
-            marginBottom: (i, el) => el.nextElementSibling ? 24 : 0,
-            stagger: 1.5,
-            duration: 0.8,
-            ease: "power2.out"
-          }, "<0.2")
-          .to({}, { duration: 2 });
+          .to('.skills-title', { opacity: 0, y: -50, duration: 1 }, "<")
+          .to(skillItems, { opacity: 0, scale: 0, height: 0, marginBottom: 0, duration: 1 }, "<")
+          .to({}, { duration: 1 });
 
   // ----------------------------------------------------
   // TECH SKILLS TIMELINE (MARS)
@@ -407,25 +405,22 @@ function init3DPlanetsScroll() {
   });
 
   techSkillsTl.to(marsGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
-          .to({}, {duration: 0.5})
-          .to(marsGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
-          .to(marsGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-          .to('.tech-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
-          .to('.tech-item', {
-            opacity: 1,
-            scale: 1,
-            height: 'auto',
-            marginBottom: (i, el) => el.nextElementSibling ? 24 : 0,
-            stagger: 1.5,
-            duration: 0.8,
-            ease: "power2.out"
-          }, "<0.2")
-          .to({}, { duration: 2 });
+              .to('.tech-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.5");
+          
+  const techItems = gsap.utils.toArray('.tech-item');
+  techItems.forEach((item) => {
+    techSkillsTl.to(item, { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 });
+  });
+
+  techSkillsTl.to(marsGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
+              .to(marsGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
+              .to('.tech-title', { opacity: 0, y: -50, duration: 1 }, "<")
+              .to(techItems, { opacity: 0, scale: 0, height: 0, marginBottom: 0, duration: 1 }, "<")
+              .to({}, { duration: 1 });
 
   // ----------------------------------------------------
   // EXPERIENCE TIMELINE (JUPITER)
   // ----------------------------------------------------
-  // Jupiter starts at bottom-left of the diagonal ring
   gsap.set(jupiterGroup.position, { x: -5, y: -5 }); 
   gsap.set('.experience-title', { opacity: 0, y: -50 });
   gsap.set('.experience-item', { opacity: 0, scale: 0, height: 0, marginBottom: 0, overflow: 'hidden' });
@@ -439,33 +434,23 @@ function init3DPlanetsScroll() {
     }
   });
 
-  // Phase 1: Jupiter flies from bottom-left to center
-  expTl.to(jupiterGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 });
-  
-  // Phase 2: Jupiter pauses briefly in the center
-  expTl.to({}, {duration: 0.5});
+  expTl.to(jupiterGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
+       .to('.experience-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.5");
 
-  // Phase 3: Jupiter flies away to top-right
+  const expItems = gsap.utils.toArray('.experience-item');
+  expItems.forEach((item) => {
+    expTl.to(item, { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 });
+  });
+
   expTl.to(jupiterGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
-       .to(jupiterGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<"); 
-
-  // Phase 4: Text scales out from center and expands dynamically
-  expTl.to('.experience-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
-       .to('.experience-item', {
-         opacity: 1,
-         scale: 1,
-         height: 'auto',
-         marginBottom: (i, el) => el.nextElementSibling ? 24 : 0,
-         stagger: 1.5,
-         duration: 0.8,
-         ease: "power2.out"
-       }, "<0.2")
-       .to({}, { duration: 2 });
+       .to(jupiterGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
+       .to('.experience-title', { opacity: 0, y: -50, duration: 1 }, "<")
+       .to(expItems, { opacity: 0, scale: 0, height: 0, marginBottom: 0, duration: 1 }, "<")
+       .to({}, { duration: 1 });
 
   // ----------------------------------------------------
   // WORK TIMELINE (NEPTUNE)
   // ----------------------------------------------------
-  // Neptune starts at bottom-left of the diagonal ring
   gsap.set(neptuneGroup.position, { x: -5, y: -5 }); 
   gsap.set('.work-title', { opacity: 0, y: -50 });
   gsap.set('.project-item', { opacity: 0, scale: 0, height: 0, marginBottom: 0, overflow: 'hidden' });
@@ -479,28 +464,19 @@ function init3DPlanetsScroll() {
     }
   });
 
-  // Phase 1: Neptune flies from bottom-left to center
-  workTl.to(neptuneGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 });
-  
-  // Phase 2: Neptune pauses briefly in the center
-  workTl.to({}, {duration: 0.5});
+  workTl.to(neptuneGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
+        .to('.work-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.5");
 
-  // Phase 3: Neptune flies away to top-right
+  const workItems = gsap.utils.toArray('.project-item');
+  workItems.forEach((item) => {
+    workTl.to(item, { opacity: 1, scale: 1, height: 'auto', marginBottom: 24, ease: "power2.out", duration: 1 });
+  });
+
   workTl.to(neptuneGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
-        .to(neptuneGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<"); 
-
-  // Phase 4: Text scales out from center and expands dynamically
-  workTl.to('.work-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
-        .to('.project-item', {
-          opacity: 1,
-          scale: 1,
-          height: 'auto',
-          marginBottom: (i, el) => el.nextElementSibling ? 24 : 0,
-          stagger: 1.5,
-          duration: 0.8,
-          ease: "power2.out"
-        }, "<0.2")
-        .to({}, { duration: 2 });
+        .to(neptuneGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
+        .to('.work-title', { opacity: 0, y: -50, duration: 1 }, "<")
+        .to(workItems, { opacity: 0, scale: 0, height: 0, marginBottom: 0, duration: 1 }, "<")
+        .to({}, { duration: 1 });
 
   // ----------------------------------------------------
   // CONTACT TIMELINE (URANUS)
@@ -519,16 +495,9 @@ function init3DPlanetsScroll() {
   });
 
   contactTl.to(uranusGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
-          .to({}, {duration: 0.5})
-          .to(uranusGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
-          .to(uranusGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-          .to('.contact-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
-          .to('.contact-link', {
-            opacity: 1,
-            y: 0,
-            stagger: 0.3,
-            duration: 0.8,
-            ease: "power2.out"
-          }, "<0.2")
-          .to({}, { duration: 2 });
+           .to('.contact-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.5");
+
+  const contactLinks = gsap.utils.toArray('.contact-link');
+  contactTl.to(contactLinks, { opacity: 1, y: 0, stagger: 0.25, duration: 1, ease: "power2.out" })
+           .to({}, { duration: 1 });
 }
