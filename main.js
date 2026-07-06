@@ -281,6 +281,19 @@ function init3DPlanetsScroll() {
   const uranusAtmos2 = new THREE.Mesh(new THREE.SphereGeometry(1.55, 64, 64), new THREE.MeshBasicMaterial({ color: uranusColor, transparent: true, opacity: 0.08, blending: THREE.AdditiveBlending }));
   uranusGroup.add(uranusAtmos1, uranusAtmos2);
 
+  // Uranus Rings
+  const uranusRingGeo = new THREE.RingGeometry(1.8, 2.5, 64);
+  const uranusRingMat = new THREE.MeshBasicMaterial({ 
+    color: 0x99ccff, 
+    transparent: true, 
+    opacity: 0.4, 
+    side: THREE.DoubleSide 
+  });
+  const uranusRing = new THREE.Mesh(uranusRingGeo, uranusRingMat);
+  // Uranus is famous for its extreme axial tilt (almost 90 degrees)
+  uranusRing.rotation.x = 1.57; // 90 degrees
+  uranusGroup.add(uranusRing);
+
   uranusGroup.scale.set(0.8, 0.8, 0.8);
   scene.add(uranusGroup);
 
