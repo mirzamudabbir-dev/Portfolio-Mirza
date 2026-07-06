@@ -171,7 +171,7 @@ body {
   pointer-events: none; /* Let clicks pass through unless on cards */
 }
 
-.work-title, .experience-title {
+.work-title, .experience-title, .skills-title {
   position: relative;
   font-size: 2.5rem;
   font-weight: 700;
@@ -220,10 +220,11 @@ body {
   gap: 4px;
 }
 
-.project-title {
-  font-size: 2rem;
+.project-title, .exp-title, .skill-title {
+  font-size: clamp(1.5rem, 5vw, 2rem);
   font-weight: 700;
   letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .project-cat {
@@ -263,6 +264,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
+  text-align: left;
+  word-wrap: break-word;
 }
 
 .cards-container::-webkit-scrollbar, .experience-container::-webkit-scrollbar {
@@ -282,11 +286,7 @@ body {
   gap: 8px;
 }
 
-.exp-title {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
+
 
 .exp-company {
   font-size: 0.85rem;
