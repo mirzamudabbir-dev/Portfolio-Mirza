@@ -255,11 +255,11 @@ body {
   text-align: left;
 }
 
-.experience-container, .cards-container {
-  gap: 24px;
+.experience-title, .work-title, .skills-title {
+  margin-bottom: 24px;
 }
 
-.skills-item {
+.skills-item, .experience-item, .project-item {
   display: flex;
   flex-direction: column;
   gap: 16px;

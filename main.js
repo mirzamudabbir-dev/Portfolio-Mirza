@@ -283,6 +283,7 @@ function init3DPlanetsScroll() {
   // SKILLS TIMELINE (VENUS)
   // ----------------------------------------------------
   gsap.set(venusGroup.position, { x: -5, y: -5 }); 
+  gsap.set('.skills-title', { opacity: 0, y: -50 });
   gsap.set('.skills-item', { opacity: 0, scale: 0 });
 
   const skillsTl = gsap.timeline({
@@ -298,7 +299,8 @@ function init3DPlanetsScroll() {
           .to({}, {duration: 0.5})
           .to(venusGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
           .to(venusGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
-          .to('.skills-item', { opacity: 1, scale: 1, stagger: 0.2, duration: 0.8, ease: "power2.out" }, "-=0.8");
+          .to('.skills-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
+          .to('.skills-item', { opacity: 1, scale: 1, stagger: 0.2, duration: 0.8, ease: "power2.out" }, "<0.2");
 
   // ----------------------------------------------------
   // EXPERIENCE TIMELINE (JUPITER)
@@ -306,7 +308,7 @@ function init3DPlanetsScroll() {
   // Jupiter starts at bottom-left of the diagonal ring
   gsap.set(jupiterGroup.position, { x: -5, y: -5 }); 
   gsap.set('.experience-title', { opacity: 0, y: -50 });
-  gsap.set('.experience-item', { opacity: 0, scale: 0 });
+  gsap.set('.experience-item', { opacity: 0, scale: 0, height: 0, marginBottom: 0, overflow: 'hidden' });
 
   const expTl = gsap.timeline({
     scrollTrigger: {
@@ -327,11 +329,13 @@ function init3DPlanetsScroll() {
   expTl.to(jupiterGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
        .to(jupiterGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<"); 
 
-  // Phase 4: Text scales out from center
+  // Phase 4: Text scales out from center and expands dynamically
   expTl.to('.experience-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
        .to('.experience-item', {
          opacity: 1,
          scale: 1,
+         height: 'auto',
+         marginBottom: (i, el) => el.nextElementSibling ? 24 : 0,
          stagger: 1.5,
          duration: 0.8,
          ease: "power2.out"
@@ -343,7 +347,7 @@ function init3DPlanetsScroll() {
   // Neptune starts at bottom-left of the diagonal ring
   gsap.set(neptuneGroup.position, { x: -5, y: -5 }); 
   gsap.set('.work-title', { opacity: 0, y: -50 });
-  gsap.set('.project-star-wrapper', { opacity: 0, scale: 0 });
+  gsap.set('.project-item', { opacity: 0, scale: 0, height: 0, marginBottom: 0, overflow: 'hidden' });
 
   const workTl = gsap.timeline({
     scrollTrigger: {
@@ -364,11 +368,13 @@ function init3DPlanetsScroll() {
   workTl.to(neptuneGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
         .to(neptuneGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<"); 
 
-  // Phase 4: Text scales out from center
+  // Phase 4: Text scales out from center and expands dynamically
   workTl.to('.work-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
-        .to('.project-star-wrapper', {
+        .to('.project-item', {
           opacity: 1,
           scale: 1,
+          height: 'auto',
+          marginBottom: (i, el) => el.nextElementSibling ? 24 : 0,
           stagger: 1.5,
           duration: 0.8,
           ease: "power2.out"
