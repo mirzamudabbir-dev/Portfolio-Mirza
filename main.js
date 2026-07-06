@@ -208,6 +208,20 @@ function init3DPlanetsScroll() {
   venusGroup.scale.set(0.8, 0.8, 0.8);
   scene.add(venusGroup);
 
+  // 6. Mars Mesh and Atmosphere Group (Tech Skills Section)
+  const marsGroup = new THREE.Group();
+  const marsMat = new THREE.MeshStandardMaterial({ color: 0xcc4422, roughness: 0.9, metalness: 0.2 });
+  const mars = new THREE.Mesh(geometry, marsMat);
+  marsGroup.add(mars);
+
+  const marsColor = 0xff5533;
+  const marsAtmos1 = new THREE.Mesh(new THREE.SphereGeometry(1.52, 64, 64), new THREE.MeshBasicMaterial({ color: marsColor, transparent: true, opacity: 0.2, blending: THREE.AdditiveBlending }));
+  const marsAtmos2 = new THREE.Mesh(new THREE.SphereGeometry(1.55, 64, 64), new THREE.MeshBasicMaterial({ color: marsColor, transparent: true, opacity: 0.1, blending: THREE.AdditiveBlending }));
+  marsGroup.add(marsAtmos1, marsAtmos2);
+
+  marsGroup.scale.set(0.8, 0.8, 0.8);
+  scene.add(marsGroup);
+
   // Lighting
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.4); // Brighter ambient
   scene.add(ambientLight);
@@ -233,6 +247,7 @@ function init3DPlanetsScroll() {
     neptuneGroup.rotation.y += 0.002;
     mercuryGroup.rotation.y += 0.002;
     venusGroup.rotation.y += 0.002;
+    marsGroup.rotation.y += 0.002;
     renderer.render(scene, camera);
   }
   animatePlanets();
@@ -301,6 +316,38 @@ function init3DPlanetsScroll() {
           .to(venusGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
           .to('.skills-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
           .to('.skills-item', {
+            opacity: 1,
+            scale: 1,
+            height: 'auto',
+            marginBottom: (i, el) => el.nextElementSibling ? 24 : 0,
+            stagger: 1.5,
+            duration: 0.8,
+            ease: "power2.out"
+          }, "<0.2")
+          .to({}, { duration: 2 });
+
+  // ----------------------------------------------------
+  // TECH SKILLS TIMELINE (MARS)
+  // ----------------------------------------------------
+  gsap.set(marsGroup.position, { x: -5, y: -5 }); 
+  gsap.set('.tech-title', { opacity: 0, y: -50 });
+  gsap.set('.tech-item', { opacity: 0, scale: 0, height: 0, marginBottom: 0, overflow: 'hidden' });
+
+  const techSkillsTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#tech-skills",
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 1,
+    }
+  });
+
+  techSkillsTl.to(marsGroup.position, { x: 0, y: 0, ease: "power1.inOut", duration: 1 })
+          .to({}, {duration: 0.5})
+          .to(marsGroup.position, { x: 5, y: 5, ease: "power2.inOut", duration: 1 })
+          .to(marsGroup.scale, { x: 0, y: 0, z: 0, ease: "power2.inOut", duration: 1 }, "<")
+          .to('.tech-title', { opacity: 1, y: 0, duration: 0.5 }, "-=0.8")
+          .to('.tech-item', {
             opacity: 1,
             scale: 1,
             height: 'auto',
