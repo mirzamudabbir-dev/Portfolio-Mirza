@@ -133,10 +133,60 @@ function init3DPlanetsScroll() {
   const textureLoader = new THREE.TextureLoader();
   const geometry = new THREE.SphereGeometry(1.5, 64, 64);
 
-  // 1. Earth Mesh
+  // 1. Earth Mesh & Rayleigh Atmosphere
   const earthTexture = textureLoader.load('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg');
   const earthMat = new THREE.MeshStandardMaterial({ map: earthTexture, roughness: 0.6, metalness: 0.1 });
-  const earth = new THREE.Mesh(geometry, earthMat);
+  const earthMesh = new THREE.Mesh(geometry, earthMat);
+  
+  const earth = new THREE.Group();
+  earth.add(earthMesh);
+  
+  const vertexShader = `
+    varying vec3 vNormal;
+    void main() {
+      vNormal = normalize(normalMatrix * normal);
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `;
+  
+  // Outer halo (BackSide)
+  const fragmentShaderHalo = `
+    varying vec3 vNormal;
+    void main() {
+      float intensity = pow(0.65 - dot(vNormal, vec3(0, 0, 1.0)), 4.0);
+      gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
+    }
+  `;
+  const haloMat = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader: fragmentShaderHalo,
+    blending: THREE.AdditiveBlending,
+    side: THREE.BackSide,
+    transparent: true
+  });
+  const earthHalo = new THREE.Mesh(geometry, haloMat);
+  earthHalo.scale.set(1.15, 1.15, 1.15);
+  earth.add(earthHalo);
+
+  // Inner atmospheric scattering (FrontSide)
+  const fragmentShaderAtmosphere = `
+    varying vec3 vNormal;
+    void main() {
+      float intensity = pow(max(0.0, 0.7 - dot(vNormal, vec3(0, 0, 1.0))), 3.0);
+      gl_FragColor = vec4(0.3, 0.6, 1.0, 1.0) * intensity;
+    }
+  `;
+  const innerAtmosMat = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader: fragmentShaderAtmosphere,
+    blending: THREE.AdditiveBlending,
+    side: THREE.FrontSide,
+    transparent: true
+  });
+  const earthInnerAtmos = new THREE.Mesh(geometry, innerAtmosMat);
+  earthInnerAtmos.scale.set(1.02, 1.02, 1.02);
+  earth.add(earthInnerAtmos);
+
   scene.add(earth);
 
   // 2. Jupiter Mesh (Work Experience)
